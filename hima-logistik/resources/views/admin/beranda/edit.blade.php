@@ -49,7 +49,7 @@
                         @error('stat_anggota')<p class="form-error">{{ $message }}</p>@enderror
                     </div>
                     <div>
-                        <label class="form-label">Kegiatan Per Tahun</label>
+                        <label class="form-label">Kegiatan Diselenggarakan</label>
                         <input type="text" name="stat_kegiatan" value="{{ old('stat_kegiatan', $beranda->stat_kegiatan) }}" class="form-input">
                         @error('stat_kegiatan')<p class="form-error">{{ $message }}</p>@enderror
                     </div>

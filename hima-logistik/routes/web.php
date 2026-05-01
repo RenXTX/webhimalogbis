@@ -15,12 +15,14 @@ use Illuminate\Support\Facades\Route;
 // ============================================================
 // PUBLIC ROUTES
 // ============================================================
-Route::get('/', [BerandaController::class, 'index'])->name('beranda');
-Route::get('/tentang', [TentangController::class, 'index'])->name('tentang');
-Route::get('/kegiatan', [KegiatanController::class, 'index'])->name('kegiatan.index');
-Route::get('/kegiatan/{kegiatan}', [KegiatanController::class, 'show'])->name('kegiatan.show');
-Route::get('/struktur', [StrukturController::class, 'index'])->name('struktur');
-Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
+Route::middleware(['site.status'])->group(function () {
+    Route::get('/', [BerandaController::class, 'index'])->name('beranda');
+    Route::get('/tentang', [TentangController::class, 'index'])->name('tentang');
+    Route::get('/kegiatan', [KegiatanController::class, 'index'])->name('kegiatan.index');
+    Route::get('/kegiatan/{kegiatan}', [KegiatanController::class, 'show'])->name('kegiatan.show');
+    Route::get('/struktur', [StrukturController::class, 'index'])->name('struktur');
+    Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
+});
 
 // ============================================================
 // ADMIN ROUTES (dilindungi auth middleware)
@@ -43,6 +45,12 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Settings (Super Admin Only)
+    Route::middleware(['superadmin'])->group(function () {
+        Route::get('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');
+        Route::post('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');
+    });
 });
 
 // Redirect /dashboard ke /admin

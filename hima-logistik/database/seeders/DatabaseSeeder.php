@@ -9,6 +9,8 @@ use App\Models\Beranda;
 use App\Models\Kegiatan;
 use App\Models\Struktur;
 
+use App\Models\Setting;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -16,6 +18,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // ===== SUPER ADMIN USER =====
+        User::firstOrCreate(
+            ['email' => 'superadmin@hima-logistik.ac.id'],
+            [
+                'name'              => 'Super Admin HIMA',
+                'email'             => 'superadmin@hima-logistik.ac.id',
+                'password'          => Hash::make('admin123'),
+                'role'              => 'super_admin',
+                'email_verified_at' => now(),
+            ]
+        );
+
         // ===== ADMIN USER =====
         User::firstOrCreate(
             ['email' => 'admin@hima-logistik.ac.id'],
@@ -23,8 +37,15 @@ class DatabaseSeeder extends Seeder
                 'name'              => 'Admin HIMA',
                 'email'             => 'admin@hima-logistik.ac.id',
                 'password'          => Hash::make('admin123'),
+                'role'              => 'admin',
                 'email_verified_at' => now(),
             ]
+        );
+
+        // ===== SITE SETTINGS =====
+        Setting::firstOrCreate(
+            ['key' => 'is_website_open'],
+            ['value' => 'true']
         );
 
         // ===== BERANDA =====
