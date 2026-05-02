@@ -94,6 +94,17 @@
                     <p class="text-dark-400 text-sm leading-relaxed">
                         Wadah pengembangan diri, kepemimpinan, dan solidaritas mahasiswa Logistik Bisnis.
                     </p>
+                    
+                    <div class="mt-8">
+                        <p class="text-dark-600 text-[10px] mb-3 uppercase tracking-widest font-bold">Bagian dari:</p>
+                        <a href="https://polbis.ac.id" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 group" title="Kunjungi Website Kampus POLBIS">
+                            <img src="{{ asset('images/logo_kampus.png') }}" alt="Logo Kampus POLBIS" class="h-12 w-auto object-contain opacity-80 group-hover:opacity-100 transition-all duration-300" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=POLBIS&background=0D8ABC&color=fff';">
+                            <div class="flex flex-col">
+                                <span class="text-white font-bold text-sm tracking-tight group-hover:text-primary-400 transition-colors">Politeknik Bisnis Digital Indonesia</span>
+                                <span class="text-primary-400 font-extrabold text-xs uppercase tracking-wider">POLBIS</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
                 <div>
                     <h3 class="text-white font-semibold mb-5">Navigasi</h3>

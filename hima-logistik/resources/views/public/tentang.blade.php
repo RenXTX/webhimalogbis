@@ -31,19 +31,7 @@
                 <h2 class="text-3xl font-bold text-white mb-4">Sejarah Singkat</h2>
                 <div class="divider-yellow"></div>
                 <div class="text-dark-300 leading-relaxed space-y-4">
-                    <p>
-                        HIMA Logistik Bisnis berdiri sebagai wadah resmi bagi mahasiswa Jurusan Logistik Bisnis.
-                        Didirikan dengan semangat untuk menghimpun, mengembangkan, dan memberdayakan seluruh
-                        mahasiswa agar menjadi individu yang kompeten, berkarakter, dan berdaya saing tinggi.
-                    </p>
-                    <p>
-                        Sejak awal berdiri, HIMA Logistik Bisnis telah menjalankan berbagai program kerja
-                        yang meliputi pengembangan akademik, soft skills, kepemimpinan, dan sosial kemasyarakatan.
-                    </p>
-                    <p>
-                        Dengan semangat kebersamaan dan profesionalisme, kami terus berkomitmen untuk memberikan
-                        kontribusi terbaik bagi mahasiswa dan institusi.
-                    </p>
+                    {!! nl2br(e($tentang->sejarah)) !!}
                 </div>
             </div>
 
@@ -95,8 +83,7 @@
                 </div>
                 <div class="bg-dark-700 rounded-xl p-5 border border-dark-600">
                     <p class="text-dark-200 leading-relaxed italic text-lg">
-                        "Menjadi himpunan mahasiswa yang unggul, inovatif, dan berdaya saing dalam bidang logistik
-                        bisnis serta mampu berkontribusi nyata bagi masyarakat dan dunia industri."
+                        "{{ $tentang->visi }}"
                     </p>
                 </div>
             </div>
@@ -110,13 +97,10 @@
                     <h3 class="text-2xl font-bold text-white">Misi</h3>
                 </div>
                 <ul class="space-y-3">
-                    @foreach([
-                        'Menyelenggarakan kegiatan akademik dan non-akademik yang berkualitas',
-                        'Mengembangkan potensi dan kreativitas mahasiswa di bidang logistik bisnis',
-                        'Membangun karakter mahasiswa yang jujur, bertanggung jawab, dan profesional',
-                        'Menjalin sinergi dengan stakeholder industri dan dunia kerja',
-                        'Menciptakan lingkungan organisasi yang inklusif dan demokratis',
-                    ] as $i => $m)
+                    @php
+                        $misiList = array_filter(array_map('trim', explode("\n", $tentang->misi)));
+                    @endphp
+                    @foreach($misiList as $i => $m)
                     <li class="flex items-start gap-3 text-dark-300">
                         <span class="w-6 h-6 bg-primary-400/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">{{ $i+1 }}</span>
                         <span class="leading-relaxed">{{ $m }}</span>
@@ -158,3 +142,4 @@
 </section>
 
 @endsection
+ <!-- https://achievement-county-centered-miracle.trycloudflare.com -->

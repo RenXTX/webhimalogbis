@@ -41,6 +41,10 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     // Struktur
     Route::resource('struktur', AdminStrukturController::class)->except(['show']);
 
+    // Tentang
+    Route::get('/tentang', [\App\Http\Controllers\Admin\TentangController::class, 'index'])->name('tentang.index');
+    Route::post('/tentang', [\App\Http\Controllers\Admin\TentangController::class, 'update'])->name('tentang.update');
+
     // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

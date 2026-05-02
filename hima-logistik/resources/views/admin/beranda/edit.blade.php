@@ -63,7 +63,7 @@
                         <input type="text" name="stat_periode" value="{{ old('stat_periode', $beranda->stat_periode) }}" class="form-input">
                         @error('stat_periode')<p class="form-error">{{ $message }}</p>@enderror
                     </div>
-                </div>
+                </div>  
             </div>
 
             <div class="border-t border-dark-700 pt-5 mt-5">

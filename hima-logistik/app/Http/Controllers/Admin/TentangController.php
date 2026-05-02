@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Tentang;
@@ -19,6 +20,20 @@ class TentangController extends Controller
             ]
         );
 
-        return view('public.tentang', compact('tentang'));
+        return view('admin.tentang.index', compact('tentang'));
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'sejarah' => 'required|string',
+            'visi'    => 'required|string',
+            'misi'    => 'required|string',
+        ]);
+
+        $tentang = Tentang::first();
+        $tentang->update($request->only(['sejarah', 'visi', 'misi']));
+
+        return redirect()->route('admin.tentang.index')->with('success', 'Konten Tentang Kami berhasil diperbarui!');
     }
 }
